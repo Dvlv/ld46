@@ -7,7 +7,7 @@ signal finished_apple
 signal rescued_from_danger
 
 var move_speed = 700
-var destination_boundary = 50
+var destination_boundary = 20
 var action_wait_time = 5.0
 
 var move_destination = null
@@ -51,7 +51,7 @@ func move_toward_destination(delta):
 	position = move
 
 func random_action():
-	var rooms = ["kitchen", "bathroom", "livingRoom", "bedroom", "hallway"]
+	var rooms = [ "hallway"]
 	var actions = ["room", "danger"]
 
 	randomize()
@@ -68,11 +68,8 @@ func random_action():
 	if current_room and not danger_cooldown:
 		next_action = actions[randi() % actions.size()]
 
-	print(next_action)
-
 	if next_action == "room":
 		var next_room = rooms[randi() % rooms.size()]
-		print(next_room)
 
 		if next_room != current_room:
 			emit_signal("moving_to_room", next_room)
@@ -110,7 +107,6 @@ func _on_Player_give_apple(near_sq):
 		return
 
 	if near_sq:
-		print("yummy apple")
 		$AnimatedSprite.play("apple")
 		is_eating_apple = true
 
@@ -147,5 +143,3 @@ func _on_Player_rescue():
 func _on_Player_player_action_near_sq():
 	if is_in_danger:
 		_on_Player_rescue()
-	else:
-		print("player looks suspiciously at sq")

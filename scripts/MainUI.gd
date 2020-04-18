@@ -12,11 +12,12 @@ func _ready():
 
 func _on_Sq_in_danger(room):
 	danger_tri.visible = true
+	$GridContainer/warning/CenterContainer/TextureRect/AnimationPlayer.play("flash")
 
 	var new_text = ""
 
 	if room == "bedroom":
-		new_text = "Sq had found a box under your bed!"
+		new_text = "Sq has found a box under your bed!"
 
 	elif room == "kitchen":
 		new_text = "Sq has set himself on fire!"
@@ -40,11 +41,8 @@ func _on_Player_give_apple(near_sq):
 		return
 
 	if near_sq:
-		var rem_apples = int(apple_label.text)
-		rem_apples -= 1
-
-		apple_label.text = str(rem_apples)
-		main_text.text = "Sq chomps delightfully on his delicious apple"
+		apple_label.text = "0"
+		main_text.text = "Sq chomps excitedly on his delicious apple"
 
 	else:
 		main_text.text += "\nI need to be near him to give him an apple!"
@@ -75,22 +73,30 @@ func _on_Sq_staying_in_room(room):
 
 func _on_Sq_rescued_from_danger(room):
 	danger_tri.visible = false
+	$GridContainer/warning/CenterContainer/TextureRect/AnimationPlayer.stop()
 
 	var new_text = ""
 
 	if room == "bedroom":
-		new_text = "You locked the box and hid it again."
+		new_text = "You lock the box and hide it again."
 
 	elif room == "kitchen":
-		new_text = "You extinguished him just in time."
+		new_text = "You extinguish him just in time."
 
 	elif room == "livingRoom":
-		new_text = "You tied the window up again"
+		new_text = "You tie the window up again"
 
 	elif room == "bathroom":
-		new_text = "You untangled him and emptied the bath."
+		new_text = "You untangle him and empty the bath."
 
 	else:
-		new_text = "You shut off the power and plugged up the outlet."
+		new_text = "You shut off the power and reset the outlet."
 
 	main_text.text = new_text
+
+func _on_Player_player_pick_up_apple():
+	apple_label.text = "1"
+
+
+func _on_Sq_finished_apple():
+	main_text.text = "Sq has eaten his apple. Burp."

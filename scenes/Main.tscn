@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/MainUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/art/main-bg.png" type="Texture" id=3]
-[ext_resource path="res://scenes/Sq.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/art/fridge.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/bath.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/bed.png" type="Texture" id=6]
+[ext_resource path="res://assets/art/counterempty.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/sofa.png" type="Texture" id=8]
+[ext_resource path="res://assets/art/plug-normal.png" type="Texture" id=9]
+[ext_resource path="res://assets/art/counter.png" type="Texture" id=10]
+[ext_resource path="res://scenes/Sq.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30.7012, 62.9659 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -17,7 +27,46 @@ script = ExtResource( 1 )
 position = Vector2( 602.936, 9.52008 )
 texture = ExtResource( 3 )
 
-[node name="Sq" parent="." instance=ExtResource( 4 )]
+[node name="bgAssets" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="fridge" type="Sprite" parent="bgAssets"]
+position = Vector2( 857.147, -23.963 )
+texture = ExtResource( 4 )
+
+[node name="bath" type="Sprite" parent="bgAssets"]
+position = Vector2( 9.12537, -398.525 )
+texture = ExtResource( 5 )
+
+[node name="bed" type="Sprite" parent="bgAssets"]
+position = Vector2( 1189.28, -473.995 )
+texture = ExtResource( 6 )
+
+[node name="counterempty" type="Sprite" parent="bgAssets"]
+position = Vector2( 293.755, -100.873 )
+texture = ExtResource( 7 )
+
+[node name="sofa" type="Sprite" parent="bgAssets"]
+position = Vector2( 1556.79, 438.741 )
+texture = ExtResource( 8 )
+flip_h = true
+
+[node name="plug" type="Sprite" parent="bgAssets"]
+position = Vector2( -210.794, 526.017 )
+texture = ExtResource( 9 )
+
+[node name="counter" type="Sprite" parent="bgAssets"]
+position = Vector2( 294.011, 109.788 )
+texture = ExtResource( 10 )
+
+[node name="appleArea" type="Area2D" parent="bgAssets/counter"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bgAssets/counter/appleArea"]
+shape = SubResource( 1 )
+
+[node name="Sq" parent="." instance=ExtResource( 11 )]
 position = Vector2( 774.891, 425.219 )
 
 [node name="sqMovePoints" type="Node2D" parent="."]
@@ -26,21 +75,21 @@ __meta__ = {
 }
 
 [node name="kitchen" type="Node2D" parent="sqMovePoints"]
-position = Vector2( 701.503, 84.1803 )
+position = Vector2( 699.956, -7.89969 )
 
 [node name="bathroom" type="Node2D" parent="sqMovePoints"]
-position = Vector2( -187.787, -345.355 )
+position = Vector2( 9.48117, -389.473 )
 
 [node name="hallway" type="Node2D" parent="sqMovePoints"]
-position = Vector2( -118.716, 416.585 )
+position = Vector2( -187.531, 374.596 )
 
 [node name="livingRoom" type="Node2D" parent="sqMovePoints"]
-position = Vector2( 1394.37, 407.951 )
+position = Vector2( 1539.33, 435.637 )
 
 [node name="bedroom" type="Node2D" parent="sqMovePoints"]
-position = Vector2( 1461.28, -403.634 )
+position = Vector2( 1311.28, -460.127 )
 
-[node name="Player" parent="." instance=ExtResource( 5 )]
+[node name="Player" parent="." instance=ExtResource( 12 )]
 position = Vector2( 593.579, 414.426 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -51,14 +100,20 @@ limit_right = 1624
 limit_bottom = 600
 
 [connection signal="room_coords" from="." to="Sq" method="_on_Main_room_coords"]
+[connection signal="area_entered" from="bgAssets/counter/appleArea" to="Player" method="_on_appleArea_area_entered"]
+[connection signal="area_exited" from="bgAssets/counter/appleArea" to="Player" method="_on_appleArea_area_exited"]
 [connection signal="area_entered" from="Sq" to="Player" method="_on_Sq_area_entered"]
 [connection signal="area_exited" from="Sq" to="Player" method="_on_Sq_area_exited"]
+[connection signal="finished_apple" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_finished_apple"]
 [connection signal="finished_apple" from="Sq" to="." method="_on_Sq_finished_apple"]
 [connection signal="in_danger" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_in_danger"]
+[connection signal="in_danger" from="Sq" to="." method="_on_Sq_in_danger"]
 [connection signal="moving_to_room" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_moving_to_room"]
 [connection signal="rescued_from_danger" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_rescued_from_danger"]
+[connection signal="rescued_from_danger" from="Sq" to="." method="_on_Sq_rescued_from_danger"]
 [connection signal="staying_in_room" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_staying_in_room"]
-[connection signal="give_apple" from="Player" to="Sq" method="_on_Player_give_apple"]
 [connection signal="give_apple" from="Player" to="CanvasLayer/MainUI" method="_on_Player_give_apple"]
+[connection signal="give_apple" from="Player" to="Sq" method="_on_Player_give_apple"]
 [connection signal="player_action_near_sq" from="Player" to="Sq" method="_on_Player_player_action_near_sq"]
-[connection signal="rescue" from="Player" to="Sq" method="_on_Player_rescue"]
+[connection signal="player_pick_up_apple" from="Player" to="CanvasLayer/MainUI" method="_on_Player_player_pick_up_apple"]
+[connection signal="player_pick_up_apple" from="Player" to="." method="_on_Player_player_pick_up_apple"]

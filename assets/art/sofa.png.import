@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/main-bg.png-450a80e6159e610b753fd10d9c636774.stex"
+path="res://.import/sofa.png-f8d64c0741a45787d9fb76ffcc674769.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/main-bg.png"
-dest_files=[ "res://.import/main-bg.png-450a80e6159e610b753fd10d9c636774.stex" ]
+source_file="res://assets/art/sofa.png"
+dest_files=[ "res://.import/sofa.png-f8d64c0741a45787d9fb76ffcc674769.stex" ]
 
 [params]
 
