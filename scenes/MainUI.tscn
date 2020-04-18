@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/MainUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/apple-big.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/danger-tri.png" type="Texture" id=3]
+
+[node name="MainUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="appleMeter" type="CenterContainer" parent="GridContainer"]
+margin_right = 38.0
+margin_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HB" type="HBoxContainer" parent="GridContainer/appleMeter"]
+margin_top = 3.0
+margin_right = 38.0
+margin_bottom = 33.0
+
+[node name="ImgCont" type="CenterContainer" parent="GridContainer/appleMeter/HB"]
+editor/display_folded = true
+margin_right = 26.0
+margin_bottom = 30.0
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer/appleMeter/HB/ImgCont"]
+margin_right = 26.0
+margin_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 2 )
+
+[node name="LabCont" type="CenterContainer" parent="GridContainer/appleMeter/HB"]
+margin_left = 30.0
+margin_right = 38.0
+margin_bottom = 30.0
+
+[node name="appleLabel" type="Label" parent="GridContainer/appleMeter/HB/LabCont"]
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 22.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "3"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer"]
+margin_left = 42.0
+margin_right = 946.0
+margin_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="GridContainer/MarginContainer"]
+margin_right = 904.0
+margin_bottom = 36.0
+
+[node name="status" type="Label" parent="GridContainer/MarginContainer/CenterContainer"]
+margin_left = 365.0
+margin_top = 11.0
+margin_right = 539.0
+margin_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sq looks at you nervously..."
+align = 1
+
+[node name="warning" type="CenterContainer" parent="GridContainer"]
+margin_left = 950.0
+margin_right = 984.0
+margin_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GridContainer/warning"]
+margin_right = 34.0
+margin_bottom = 36.0
+
+[node name="TextureRect" type="TextureRect" parent="GridContainer/warning/CenterContainer"]
+margin_right = 34.0
+margin_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 3 )
+

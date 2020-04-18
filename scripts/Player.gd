@@ -25,6 +25,10 @@ func _physics_process(delta):
 		if near_sq:
 			emit_signal("player_action_near_sq")
 
+	if Input.is_action_just_pressed("player_apple"):
+		emit_signal("give_apple", near_sq)
+
+
 
 func give_apple():
 	if near_sq:

@@ -3,13 +3,18 @@ extends Node2D
 signal moving_to_room
 signal in_danger
 signal staying_in_room
+signal finished_apple
+signal rescued_from_danger
 
 var move_speed = 700
 var destination_boundary = 50
+var action_wait_time = 5.0
+
 var move_destination = null
 var current_room = null
 var danger_cooldown = false
 var is_in_danger = false
+var is_eating_apple = false
 
 onready var timer = $Timer
 onready var danger_cd_timer = $dangerCooldownTimer
@@ -50,6 +55,13 @@ func random_action():
 
 	randomize()
 
+	if is_eating_apple:
+		timer.wait_time = action_wait_time
+		is_eating_apple = false
+		emit_signal("finished_apple")
+		$AnimatedSprite.play("idle")
+		return
+
 	var next_action = "room"
 
 	if current_room and not danger_cooldown:
@@ -88,9 +100,22 @@ func on_danger_timeout():
 	print("sq died in room", current_room)
 
 
-func _on_Player_give_apple():
-	timer.wait_time = 20.0
-	emit_signal("moving_to_room", "livingRoom")
+func _on_Player_give_apple(near_sq):
+	if is_in_danger:
+		return
+
+	if near_sq:
+		print("yummy apple")
+		$AnimatedSprite.play("apple")
+		is_eating_apple = true
+
+		timer.stop()
+		timer.wait_time = 2 * action_wait_time
+		timer.start()
+
+		danger_cd_timer.wait_time = 20.0
+		danger_cooldown = true
+		danger_cd_timer.start()
 
 
 func _on_Main_room_coords(coords):
@@ -98,6 +123,7 @@ func _on_Main_room_coords(coords):
 
 
 func _on_Player_rescue():
+	is_in_danger = false
 	danger_timer.paused = true
 	danger_timer.wait_time = 8.0
 
@@ -106,7 +132,8 @@ func _on_Player_rescue():
 
 	timer.paused = false
 	timer.wait_time = 5.0
-	print("rescued")
+
+	emit_signal("rescued_from_danger", current_room)
 
 
 func _on_Player_player_action_near_sq():
