@@ -28,15 +28,3 @@ func send_sq_room_coords(room):
 	var coords = get_room_coords(room)
 
 	emit_signal("room_coords", coords)
-
-
-func _on_Sq_staying_in_room(room):
-	print("Sq decided to stay in room ", room)
-
-
-func _on_Sq_finished_apple():
-	print("sq has finished his apple")
-
-
-func _on_Sq_rescued_from_danger():
-	pass # Replace with function body.

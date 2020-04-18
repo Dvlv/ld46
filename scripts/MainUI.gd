@@ -10,8 +10,6 @@ onready var main_text = $GridContainer/MarginContainer/CenterContainer/status
 func _ready():
 	danger_tri.visible = false
 
-
-
 func _on_Sq_in_danger(room):
 	danger_tri.visible = true
 

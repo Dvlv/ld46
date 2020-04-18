@@ -26,6 +26,7 @@ func _ready():
 	timer.connect("timeout", self, "random_action")
 	timer.start()
 
+
 func _physics_process(delta):
 	if move_destination:
 		var dist_from_pos_x = abs(move_destination.x - position.x)
@@ -81,9 +82,13 @@ func random_action():
 
 	else:
 		emit_signal("in_danger", current_room)
+		$actionKey.visible = true
+		$actionKey/AnimationPlayer.play("pulse")
 		is_in_danger = true
 		danger_cooldown = true
+
 		timer.paused = true
+
 		danger_cd_timer.start()
 		danger_timer.start()
 
@@ -123,6 +128,9 @@ func _on_Main_room_coords(coords):
 
 
 func _on_Player_rescue():
+	$actionKey.visible = false
+	$actionKey/AnimationPlayer.stop()
+
 	is_in_danger = false
 	danger_timer.paused = true
 	danger_timer.wait_time = 8.0

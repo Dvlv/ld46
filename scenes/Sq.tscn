@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/Sq.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/sq-idle.png" type="Texture" id=2]
 [ext_resource path="res://assets/art/sq/sq-apple.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/w-key.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,6 +20,22 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 52.5208, 51.1673 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "pulse"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1, 1 ) ]
+}
 
 [node name="Sq" type="Area2D"]
 script = ExtResource( 1 )
@@ -39,4 +56,13 @@ wait_time = 20.0
 
 [node name="dangerTimer" type="Timer" parent="."]
 wait_time = 8.0
+
+[node name="actionKey" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -67.628 )
+scale = Vector2( 1.93318, 1.93318 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="actionKey"]
+anims/pulse = SubResource( 3 )
 
