@@ -70,7 +70,6 @@ func _on_Player_player_pick_up_apple():
 
 
 func _on_Sq_game_over(room):
-	print("caught game over")
 	var s = null
 
 	if room == "hallway":

@@ -96,15 +96,15 @@ margin_right = 904.0
 margin_bottom = 36.0
 
 [node name="status" type="Label" parent="GridContainer/MarginContainer/CenterContainer"]
-margin_left = 365.0
+margin_left = 352.0
 margin_top = 11.0
-margin_right = 539.0
+margin_right = 552.0
 margin_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Sq looks at you nervously..."
+text = "Merlin looks at you nervously..."
 align = 1
 
 [node name="warning" type="CenterContainer" parent="GridContainer"]

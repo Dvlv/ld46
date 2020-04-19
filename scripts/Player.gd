@@ -1,4 +1,4 @@
-extends Node2D
+extends KinematicBody2D
 
 signal give_apple
 signal player_action_near_sq
@@ -17,26 +17,31 @@ func _ready():
 	sprite.rotation_degrees = 90
 
 func _physics_process(delta):
+	var move = Vector2(0, 0)
+
 	if Input.is_action_pressed("ui_up"):
-		position.y -= move_speed * delta
+		move.y = move_speed * -1
 
 		sprite.rotation_degrees = 0
 		sprite.play("walk")
 
 	elif Input.is_action_pressed("ui_down"):
-		position.y += move_speed * delta
+		move.y = move_speed
 		sprite.rotation_degrees = 180
 		sprite.play("walk")
 
 	if Input.is_action_pressed("ui_left"):
-		position.x -= move_speed * delta
+		move.x = move_speed * -1
 		sprite.rotation_degrees = 270
 		sprite.play("walk")
 
 	elif Input.is_action_pressed("ui_right"):
-		position.x += move_speed * delta
+		move.x = move_speed
 		sprite.rotation_degrees = 90
 		sprite.play("walk")
+
+	if move.x != 0 or move.y != 0:
+		move_and_slide(move)
 
 	var is_acting = false
 
