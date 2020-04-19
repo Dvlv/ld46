@@ -3,12 +3,16 @@ extends KinematicBody2D
 signal give_apple
 signal player_action_near_sq
 signal player_pick_up_apple
+signal clean_up_mess
 
 
 var move_speed = 270
 var near_sq = false
 var is_near_apples = false
 var has_apple = false
+
+var is_near_mess = false
+var current_mess = null
 
 onready var sprite = $AnimatedSprite
 
@@ -55,6 +59,10 @@ func _physics_process(delta):
 		elif is_near_apples and not has_apple:
 			emit_signal("player_pick_up_apple")
 			has_apple = true
+		elif is_near_mess:
+			emit_signal("clean_up_mess", current_mess)
+			is_near_mess = false
+			current_mess = null
 
 	if Input.is_action_just_pressed("player_apple") and has_apple:
 		is_acting = true
@@ -85,3 +93,13 @@ func _on_appleArea_area_entered(area):
 
 func _on_appleArea_area_exited(area):
 	is_near_apples = false
+
+
+func _on_mess_area_entered(area):
+	is_near_mess = true
+	current_mess = area
+
+
+func _on_mess_area_exited(area):
+	is_near_mess = false
+	current_mess = null

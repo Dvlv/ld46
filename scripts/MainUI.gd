@@ -92,3 +92,11 @@ func _on_Player_player_pick_up_apple():
 
 func _on_Sq_finished_apple():
 	main_text.text = "Merlin has eaten his apple. Burp."
+
+
+func _on_Main_no_more_mess():
+	main_text.text = "That's it, the house is clean!!"
+
+
+func _on_Player_clean_up_mess(p):
+	main_text.text += "\n\nAnother mess taken care of."

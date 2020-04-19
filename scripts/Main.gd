@@ -1,6 +1,7 @@
 extends Node2D
 
 signal room_coords
+signal no_more_mess
 
 var num_apples = 3
 
@@ -19,6 +20,11 @@ onready var end_hallway = preload("res://scenes/end-hallway.tscn")
 onready var end_bathroom = preload("res://scenes/end-bathroom.tscn")
 onready var end_bedroom = preload("res://scenes/end-bedroom.tscn")
 onready var end_livingroom = preload("res://scenes/end-livingRoom.tscn")
+
+onready var mess = $mess
+onready var messLocs = $messLocations
+onready var current_mess_loc = null
+var house_is_clean = false
 
 
 func _ready():
@@ -82,3 +88,33 @@ func _on_Sq_game_over(room):
 		s = get_tree().change_scene_to(end_bedroom)
 	else:
 		s = get_tree().change_scene_to(end_livingroom)
+
+
+func _on_Player_clean_up_mess(player_area):
+	if house_is_clean:
+		return
+
+	var ml_children = messLocs.get_children()
+
+	var has_more_locs = messLocs.get_child_count()
+
+	if has_more_locs:
+		randomize()
+		var next_loc = ml_children[randi() % ml_children.size()]
+		mess.position = next_loc.position
+		current_mess_loc = next_loc
+		print(next_loc.position)
+	else:
+		house_is_clean = true
+		current_mess_loc = null
+		mess.queue_free()
+		emit_signal("no_more_mess")
+
+	if current_mess_loc:
+		current_mess_loc.queue_free()
+		current_mess_loc = null
+
+
+
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/MainUI.tscn" type="PackedScene" id=2]
@@ -10,8 +10,9 @@
 [ext_resource path="res://assets/art/sofa.png" type="Texture" id=8]
 [ext_resource path="res://assets/art/plug-normal.png" type="Texture" id=9]
 [ext_resource path="res://assets/art/counter.png" type="Texture" id=10]
-[ext_resource path="res://scenes/Sq.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/mess.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Sq.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 209.059 )
@@ -36,6 +37,7 @@ script = ExtResource( 1 )
 [node name="MainUI" parent="CanvasLayer" instance=ExtResource( 2 )]
 
 [node name="Background" type="Sprite" parent="."]
+editor/display_folded = true
 position = Vector2( 602.936, 9.52008 )
 texture = ExtResource( 3 )
 
@@ -92,6 +94,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 2 )
 
 [node name="lr-wall-l4" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( -574.72, -119.839 )
 __meta__ = {
 "_edit_group_": true
@@ -102,6 +105,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 5 )
 
 [node name="lr-wall-l5" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( -999.791, -118.332 )
 __meta__ = {
 "_edit_group_": true
@@ -112,6 +116,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 5 )
 
 [node name="lr-wall-l6" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( -315.52, -119.839 )
 __meta__ = {
 "_edit_group_": true
@@ -122,6 +127,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 5 )
 
 [node name="lr-wall-l7" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( 314.611, -122.854 )
 __meta__ = {
 "_edit_group_": true
@@ -132,6 +138,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 5 )
 
 [node name="lr-wall-l8" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( 558.801, -118.332 )
 __meta__ = {
 "_edit_group_": true
@@ -142,6 +149,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 5 )
 
 [node name="lr-wall-l9" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( 989.901, -116.824 )
 __meta__ = {
 "_edit_group_": true
@@ -152,6 +160,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 5 )
 
 [node name="lr-wall-l10" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( 998.945, 272.07 )
 __meta__ = {
 "_edit_group_": true
@@ -162,6 +171,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 5 )
 
 [node name="lr-wall-l11" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( 549.757, 275.085 )
 __meta__ = {
 "_edit_group_": true
@@ -172,6 +182,7 @@ position = Vector2( 0.814514, -78.1927 )
 shape = SubResource( 5 )
 
 [node name="lr-wall-r" type="StaticBody2D" parent="Background"]
+editor/display_folded = true
 position = Vector2( 1014.2, 82.6187 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/lr-wall-r"]
@@ -251,7 +262,33 @@ texture = ExtResource( 10 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bgAssets/counter/appleArea"]
 shape = SubResource( 1 )
 
-[node name="Sq" parent="." instance=ExtResource( 11 )]
+[node name="messLocations" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="messLocations"]
+position = Vector2( 757.314, -206.119 )
+
+[node name="Node2D2" type="Node2D" parent="messLocations"]
+position = Vector2( 187.693, -350.282 )
+
+[node name="Node2D3" type="Node2D" parent="messLocations"]
+position = Vector2( -181.505, 177.145 )
+
+[node name="Node2D4" type="Node2D" parent="messLocations"]
+position = Vector2( 889.171, 363.502 )
+
+[node name="Node2D5" type="Node2D" parent="messLocations"]
+position = Vector2( 1309.35, 157.806 )
+
+[node name="Node2D6" type="Node2D" parent="messLocations"]
+position = Vector2( 1328.69, -123.489 )
+
+[node name="Node2D7" type="Node2D" parent="messLocations"]
+position = Vector2( 628.974, 277.356 )
+
+[node name="mess" parent="." instance=ExtResource( 11 )]
+position = Vector2( 406.126, -217.503 )
+
+[node name="Sq" parent="." instance=ExtResource( 12 )]
 position = Vector2( 774.891, 425.219 )
 
 [node name="sqMovePoints" type="Node2D" parent="."]
@@ -275,7 +312,7 @@ position = Vector2( 1551.96, 438.795 )
 [node name="bedroom" type="Node2D" parent="sqMovePoints"]
 position = Vector2( 1311.28, -460.127 )
 
-[node name="Player" parent="." instance=ExtResource( 12 )]
+[node name="Player" parent="." instance=ExtResource( 13 )]
 position = Vector2( 593.579, 414.426 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -285,13 +322,15 @@ limit_top = -588
 limit_right = 1624
 limit_bottom = 600
 
+[connection signal="no_more_mess" from="." to="CanvasLayer/MainUI" method="_on_Main_no_more_mess"]
 [connection signal="room_coords" from="." to="Sq" method="_on_Main_room_coords"]
 [connection signal="area_entered" from="bgAssets/counter/appleArea" to="Player" method="_on_appleArea_area_entered"]
 [connection signal="area_exited" from="bgAssets/counter/appleArea" to="Player" method="_on_appleArea_area_exited"]
+[connection signal="area_entered" from="mess" to="Player" method="_on_mess_area_entered"]
+[connection signal="area_exited" from="mess" to="Player" method="_on_mess_area_exited"]
 [connection signal="area_entered" from="Sq" to="Player" method="_on_Sq_area_entered"]
 [connection signal="area_exited" from="Sq" to="Player" method="_on_Sq_area_exited"]
 [connection signal="finished_apple" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_finished_apple"]
-[connection signal="finished_apple" from="Sq" to="." method="_on_Sq_finished_apple"]
 [connection signal="game_over" from="Sq" to="." method="_on_Sq_game_over"]
 [connection signal="in_danger" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_in_danger"]
 [connection signal="in_danger" from="Sq" to="." method="_on_Sq_in_danger"]
@@ -299,6 +338,8 @@ limit_bottom = 600
 [connection signal="rescued_from_danger" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_rescued_from_danger"]
 [connection signal="rescued_from_danger" from="Sq" to="." method="_on_Sq_rescued_from_danger"]
 [connection signal="staying_in_room" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_staying_in_room"]
+[connection signal="clean_up_mess" from="Player" to="CanvasLayer/MainUI" method="_on_Player_clean_up_mess"]
+[connection signal="clean_up_mess" from="Player" to="." method="_on_Player_clean_up_mess"]
 [connection signal="give_apple" from="Player" to="CanvasLayer/MainUI" method="_on_Player_give_apple"]
 [connection signal="give_apple" from="Player" to="Sq" method="_on_Player_give_apple"]
 [connection signal="player_action_near_sq" from="Player" to="Sq" method="_on_Player_player_action_near_sq"]
