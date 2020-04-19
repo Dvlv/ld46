@@ -15,6 +15,11 @@ onready var no_apples_sprite = preload("res://assets/art/counterempty.png")
 
 onready var counter = $bgAssets/counter
 
+onready var end_hallway = preload("res://scenes/end-hallway.tscn")
+onready var end_bathroom = preload("res://scenes/end-bathroom.tscn")
+onready var end_bedroom = preload("res://scenes/end-bedroom.tscn")
+onready var end_livingroom = preload("res://scenes/end-livingRoom.tscn")
+
 
 func _ready():
 	sq.connect("moving_to_room", self, "send_sq_room_coords")
@@ -62,3 +67,19 @@ func _on_Player_player_pick_up_apple():
 	if num_apples == 0:
 		$bgAssets/counter/appleArea.queue_free()
 
+
+
+func _on_Sq_game_over(room):
+	print("caught game over")
+	var s = null
+
+	if room == "hallway":
+		s = get_tree().change_scene_to(end_hallway)
+	elif room == "livingRoom":
+		s = get_tree().change_scene_to(end_livingroom)
+	elif room == "bathroom":
+		s = get_tree().change_scene_to(end_bathroom)
+	elif room == "bedroom":
+		s = get_tree().change_scene_to(end_bedroom)
+	else:
+		s = get_tree().change_scene_to(end_livingroom)

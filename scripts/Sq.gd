@@ -5,10 +5,13 @@ signal in_danger
 signal staying_in_room
 signal finished_apple
 signal rescued_from_danger
+signal game_over
 
 var move_speed = 700
 var destination_boundary = 10
 var action_wait_time = 5.0
+var danger_wait_time = 8.0
+var danger_cd_wait_time = 15.0
 
 var move_destination = null
 var current_room = null
@@ -23,6 +26,10 @@ onready var danger_timer = $dangerTimer
 func _ready():
 	danger_cd_timer.connect("timeout", self, "on_danger_cd_timeout")
 	danger_timer.connect("timeout", self, "on_danger_timeout")
+
+	danger_timer.wait_time = danger_wait_time
+	danger_cd_timer.wait_time = danger_cd_wait_time
+
 	timer.connect("timeout", self, "random_action")
 	timer.start()
 
@@ -96,8 +103,11 @@ func random_action():
 
 		timer.paused = true
 
-		danger_cd_timer.start()
+		danger_timer.wait_time = danger_wait_time
+		danger_cd_timer.wait_time = danger_cd_wait_time
+
 		danger_timer.start()
+
 
 
 func on_danger_cd_timeout():
@@ -106,10 +116,10 @@ func on_danger_cd_timeout():
 	timer.paused = false
 
 	danger_timer.wait_time = 8.0
-	danger_timer.paused = true
 
 func on_danger_timeout():
-	print("sq died in room", current_room)
+	print("sending game over")
+	emit_signal("game_over", current_room)
 
 
 func _on_Player_give_apple(near_sq):
@@ -138,14 +148,14 @@ func _on_Player_rescue():
 	$actionKey/AnimationPlayer.stop()
 
 	is_in_danger = false
-	danger_timer.paused = true
-	danger_timer.wait_time = 8.0
 
 	danger_cd_timer.start()
 	danger_cooldown = true
 
 	timer.paused = false
 	timer.wait_time = 5.0
+
+	danger_timer.stop()
 
 	emit_signal("rescued_from_danger", current_room)
 
