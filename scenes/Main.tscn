@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/MainUI.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/mess.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Sq.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/sounds/bgm.ogg" type="AudioStream" id=14]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 209.059 )
@@ -334,6 +335,10 @@ limit_top = -588
 limit_right = 1624
 limit_bottom = 600
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 14 )
+autoplay = true
+
 [connection signal="no_more_mess" from="." to="CanvasLayer/MainUI" method="_on_Main_no_more_mess"]
 [connection signal="room_coords" from="." to="Sq" method="_on_Main_room_coords"]
 [connection signal="area_entered" from="bgAssets/counter/appleArea" to="Player" method="_on_appleArea_area_entered"]
@@ -344,16 +349,16 @@ limit_bottom = 600
 [connection signal="area_exited" from="Sq" to="Player" method="_on_Sq_area_exited"]
 [connection signal="finished_apple" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_finished_apple"]
 [connection signal="game_over" from="Sq" to="." method="_on_Sq_game_over"]
-[connection signal="in_danger" from="Sq" to="." method="_on_Sq_in_danger"]
 [connection signal="in_danger" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_in_danger"]
+[connection signal="in_danger" from="Sq" to="." method="_on_Sq_in_danger"]
 [connection signal="moving_to_room" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_moving_to_room"]
-[connection signal="rescued_from_danger" from="Sq" to="." method="_on_Sq_rescued_from_danger"]
 [connection signal="rescued_from_danger" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_rescued_from_danger"]
+[connection signal="rescued_from_danger" from="Sq" to="." method="_on_Sq_rescued_from_danger"]
 [connection signal="staying_in_room" from="Sq" to="CanvasLayer/MainUI" method="_on_Sq_staying_in_room"]
-[connection signal="clean_up_mess" from="Player" to="." method="_on_Player_clean_up_mess"]
 [connection signal="clean_up_mess" from="Player" to="CanvasLayer/MainUI" method="_on_Player_clean_up_mess"]
+[connection signal="clean_up_mess" from="Player" to="." method="_on_Player_clean_up_mess"]
 [connection signal="give_apple" from="Player" to="Sq" method="_on_Player_give_apple"]
 [connection signal="give_apple" from="Player" to="CanvasLayer/MainUI" method="_on_Player_give_apple"]
 [connection signal="player_action_near_sq" from="Player" to="Sq" method="_on_Player_player_action_near_sq"]
-[connection signal="player_pick_up_apple" from="Player" to="." method="_on_Player_player_pick_up_apple"]
 [connection signal="player_pick_up_apple" from="Player" to="CanvasLayer/MainUI" method="_on_Player_player_pick_up_apple"]
+[connection signal="player_pick_up_apple" from="Player" to="." method="_on_Player_player_pick_up_apple"]

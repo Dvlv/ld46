@@ -96,6 +96,7 @@ func random_action():
 
 	else:
 		emit_signal("in_danger", current_room)
+		$AudioStreamPlayer2D.play()
 		$actionKey.visible = true
 		$actionKey/AnimationPlayer.play("pulse")
 		is_in_danger = true

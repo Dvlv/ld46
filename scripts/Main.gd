@@ -29,6 +29,7 @@ var house_is_clean = false
 
 func _ready():
 	sq.connect("moving_to_room", self, "send_sq_room_coords")
+	$Player/AudioStreamPlayer.play()
 
 
 func get_room_coords(room):

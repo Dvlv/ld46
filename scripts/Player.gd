@@ -60,6 +60,7 @@ func _physics_process(delta):
 			emit_signal("player_pick_up_apple")
 			has_apple = true
 		elif is_near_mess:
+			$cleansound.play()
 			emit_signal("clean_up_mess", current_mess)
 			is_near_mess = false
 			current_mess = null
