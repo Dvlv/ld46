@@ -108,7 +108,7 @@ func _on_Player_clean_up_mess(player_area):
 		house_is_clean = true
 		current_mess_loc = null
 		mess.queue_free()
-		emit_signal("no_more_mess")
+		get_tree().change_scene("res://scenes/ending.tscn")
 
 	if current_mess_loc:
 		current_mess_loc.queue_free()

@@ -24,6 +24,7 @@ margin_top = 81.9947
 margin_right = 336.831
 margin_bottom = 112.995
 text = "Press W to save Merlin from danger, 
+clean up messes,
 or pick up an apple from the counter"
 align = 1
 
@@ -39,10 +40,11 @@ margin_left = 89.751
 margin_top = 80.8867
 margin_right = 386.751
 margin_bottom = 128.887
-text = "Press A when near Merlin to give him an apple
+text = "Press A when near Merlin to give him an apple (if you picked one up).
 
 This will keep him still for a little bit"
 align = 1
+autowrap = true
 
 [node name="Button" type="Button" parent="."]
 margin_left = 892.188
