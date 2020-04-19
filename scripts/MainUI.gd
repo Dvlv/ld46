@@ -17,19 +17,16 @@ func _on_Sq_in_danger(room):
 	var new_text = ""
 
 	if room == "bedroom":
-		new_text = "Sq has found a box under your bed!"
-
-	elif room == "kitchen":
-		new_text = "Sq has set himself on fire!"
+		new_text = "Merlin has found a box under your bed!"
 
 	elif room == "livingRoom":
 		new_text = "The living room window has blown open!"
 
 	elif room == "bathroom":
-		new_text = "Sq is tangled up in the bath!"
+		new_text = "Merlin is tangled up in the bath!"
 
 	else:
-		new_text = "Sq has damaged the electrical outlet!"
+		new_text = "Merlin has damaged the electrical outlet!"
 
 	main_text.text = new_text
 
@@ -42,32 +39,29 @@ func _on_Player_give_apple(near_sq):
 
 	if near_sq:
 		apple_label.text = "0"
-		main_text.text = "Sq chomps excitedly on his delicious apple"
+		main_text.text = "Merlin chomps excitedly on his delicious apple"
 
 	else:
 		main_text.text += "\nI need to be near him to give him an apple!"
 
 func _on_Sq_moving_to_room(room):
-	main_text.text = "Sq runs into the " + room
+	main_text.text = "Merlin runs into the " + room
 
 
 func _on_Sq_staying_in_room(room):
 	var new_text = ""
 
 	if room == "bedroom":
-		new_text = "Sq wants to take a nap"
-
-	elif room == "kitchen":
-		new_text = "Sq can smell food in the fridge"
+		new_text = "Merlin wants to take a nap"
 
 	elif room == "livingRoom":
-		new_text = "Sq is watching TV"
+		new_text = "Merlin is watching TV"
 
 	elif room == "bathroom":
-		new_text = "Sq thinks he needs a bath"
+		new_text = "Merlin thinks he needs a bath"
 
 	else:
-		new_text = "Sq is charging his smartphone"
+		new_text = "Merlin is charging his smartphone"
 
 	main_text.text = new_text
 
@@ -80,8 +74,6 @@ func _on_Sq_rescued_from_danger(room):
 	if room == "bedroom":
 		new_text = "You lock the box and hide it again."
 
-	elif room == "kitchen":
-		new_text = "You extinguish him just in time."
 
 	elif room == "livingRoom":
 		new_text = "You tie the window up again"
@@ -99,4 +91,4 @@ func _on_Player_player_pick_up_apple():
 
 
 func _on_Sq_finished_apple():
-	main_text.text = "Sq has eaten his apple. Burp."
+	main_text.text = "Merlin has eaten his apple. Burp."
