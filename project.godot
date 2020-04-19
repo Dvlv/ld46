@@ -16,7 +16,9 @@ _global_script_class_icons={
 [application]
 
 config/name="ld46"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/opening.tscn"
+run/disable_stdout=true
+run/disable_stderr=true
 config/icon="res://icon.png"
 
 [autoload]

@@ -119,7 +119,7 @@ func on_danger_cd_timeout():
 	danger_timer.wait_time = 8.0
 
 func on_danger_timeout():
-	print("sending game over")
+
 	emit_signal("game_over", current_room)
 
 

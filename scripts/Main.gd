@@ -104,7 +104,7 @@ func _on_Player_clean_up_mess(player_area):
 		var next_loc = ml_children[randi() % ml_children.size()]
 		mess.position = next_loc.position
 		current_mess_loc = next_loc
-		print(next_loc.position)
+
 	else:
 		house_is_clean = true
 		current_mess_loc = null
