@@ -12,6 +12,10 @@ var has_apple = false
 
 onready var sprite = $AnimatedSprite
 
+
+func _ready():
+	sprite.rotation_degrees = 90
+
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_up"):
 		position.y -= move_speed * delta

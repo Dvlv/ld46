@@ -7,7 +7,7 @@ signal finished_apple
 signal rescued_from_danger
 
 var move_speed = 700
-var destination_boundary = 20
+var destination_boundary = 10
 var action_wait_time = 5.0
 
 var move_destination = null
@@ -26,6 +26,8 @@ func _ready():
 	timer.connect("timeout", self, "random_action")
 	timer.start()
 
+	$AnimatedSprite.rotation_degrees = 270
+
 
 func _physics_process(delta):
 	if move_destination:
@@ -35,6 +37,14 @@ func _physics_process(delta):
 			move_toward_destination(delta)
 		else:
 			move_destination = null
+			if current_room == "hallway":
+				$AnimatedSprite.rotation_degrees = 180
+			elif current_room == "bathroom":
+				$AnimatedSprite.rotation_degrees = 0
+			elif current_room == "livingRoom":
+				$AnimatedSprite.rotation_degrees = 270
+			elif current_room == "bedroom":
+				$AnimatedSprite.rotation_degrees = 270
 
 
 func move_toward_destination(delta):
@@ -51,7 +61,7 @@ func move_toward_destination(delta):
 	position = move
 
 func random_action():
-	var rooms = [ "hallway"]
+	var rooms = [ "hallway", "bedroom", "bathroom", "livingRoom"]
 	var actions = ["room", "danger"]
 
 	randomize()

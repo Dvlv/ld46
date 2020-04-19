@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Sq.gd" type="Script" id=1]
-[ext_resource path="res://assets/art/sq-idle.png" type="Texture" id=2]
-[ext_resource path="res://assets/art/sq/sq-apple.png" type="Texture" id=3]
-[ext_resource path="res://assets/art/w-key.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/sq/sq-idle.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/sq/sq-apple-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/sq/sq-apple-15.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/sq/sq-apple-2.png" type="Texture" id=5]
+[ext_resource path="res://assets/art/w-key.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -12,10 +14,10 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
+"frames": [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": false,
 "name": "apple",
-"speed": 5.0
+"speed": 1.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -61,7 +63,7 @@ wait_time = 8.0
 visible = false
 position = Vector2( 0, -67.628 )
 scale = Vector2( 1.93318, 1.93318 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="actionKey"]
 anims/pulse = SubResource( 3 )
